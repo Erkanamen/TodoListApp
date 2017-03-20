@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run build",
     "build": "nodemon --watch src/server --exec babel-node -- src/server/server.js",
-    "build:prod": "webpack -p && cp src/server/index.html dist/index.html"
+    "build:prod": "webpack -p && cp src/server/index.html dist/index.html",
+    "build:win": "webpack -p && copy src\\server\\index.html dist\\index.html"
   },
   "author": "NUS_HCI_LAB",
   "license": "MIT",
