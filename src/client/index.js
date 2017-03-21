@@ -46,31 +46,28 @@ const todoListAppInitialState = {
 //Please have a look at the page of the link
 callApi('todos', 'get', {
         }).then(response => {
-           	todoListAppInitialState.todoList.todos = response;
+            //set initial states to the store
+            const store = configureStore({...todoListAppInitialState, todoList : { todos : response }});         
+            renderApp(store);
         });
-
-
-//the todoListAppInitialState will be used for initial status for this application
-const preloadedState = todoListAppInitialState;
-
-//set initial states to the store
-const store = configureStore(preloadedState);
 
 //This code will render router component at the html compoent with id "root"
 //Router : main component of react-router / set up attiributes of router
 //Route : A component will decide which component will be rendered according to our set path
 //IndexRoute : If there is no sub-route, in other words, if the user access to '/' path of specific route, the component assigned by the indexRoute will be shown.
 //browserHistory : keeping changes of URL bsed on History API in HTML 5
-render(
-    <Provider store={store} >
-        <Router history={browserHistory}>
-        	<Route path="/" component={App}>
-		      <IndexRoute component={Intro}/>
-		      <Route path="intro" component={Intro}/>
-		      <Route path="todolist" component={TodoListApp}/>
-		      <Route path="questions(/:id)" component={Questions}/>
-		    </Route>
-        </Router>
-    </Provider>, 
-    document.getElementById('root')
-);
+const renderApp = (store) => {
+    render(
+        <Provider store={store} >
+            <Router history={browserHistory}>
+                <Route path="/" component={App}>
+                <IndexRoute component={Intro}/>
+                <Route path="intro" component={Intro}/>
+                <Route path="todolist" component={TodoListApp}/>
+                <Route path="questions(/:id)" component={Questions}/>
+                </Route>
+            </Router>
+        </Provider>, 
+        document.getElementById('root')
+    );
+}
