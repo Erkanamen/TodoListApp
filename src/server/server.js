@@ -52,16 +52,7 @@ mongoose.connect(serverConfig.mongoURL, (error) => {
 
 
 //These codes can handle any request from URL properly
-server.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, './index.html'));
-});
-server.get('/intro', (req, res) => {
-   res.sendFile(path.join(__dirname, './index.html'));
-});
-server.get('/todolist', (req, res) => {
-   res.sendFile(path.join(__dirname, './index.html'));
-});
-server.get('/questions/:id', (req, res) => {
+server.get('*', (req, res) => {
    res.sendFile(path.join(__dirname, './index.html'));
 });
 

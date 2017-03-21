@@ -1,4 +1,5 @@
 import React from 'react';
+import { callApi } from '../util/apiCaller';
 
 //This class will take the action and decide what to do 
 //basically, it handles two actions for TodoList 
@@ -10,8 +11,8 @@ export const todo = (state, action) => {
 		//Action for addint Item to List
         case 'ADD_TODO_ITEM':
             state.itemIndex ++;
-            //console.log("id getting added: " + state.itemIndex) 
             return {
+            	table: 'todoItem',
                 id: state.itemIndex,
                 text: action.text,
                 completed: false
@@ -32,14 +33,7 @@ export const todo = (state, action) => {
     }
 }
 
-//Temporary initial satates
-//This variable is similar with the temporary array of todoList in tutorial 5
-const todoListInitialState = {
-    itemIndex: 0,
-    todos: []
-};
-
-export const todoList = (state = todoListInitialState, action) => {
+export const todoList = (state, action) => {
     switch (action.type) {
 		//Add item
         case 'ADD_TODO_ITEM':

@@ -2,7 +2,7 @@ import React from 'react';
 import FilterLink from './FilterLink';
 
 const FilterLinkGroup = ({filter, numOfActiveItems, onClick}) => {
-    console.log("FilterLinkGroup filter is " + filter);
+    //console.log("FilterLinkGroup filter is " + filter);
     return (
         <div>
            Show:

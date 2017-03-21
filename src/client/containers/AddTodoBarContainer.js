@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addTodoItemRequest, addTodoItem } from '../actions/TodoAppActions';
 
-const AddTodoBar = ( {itemIndex, onAddTodo} ) => {
+const AddTodoBar = ( {table, itemIndex, onAddTodo} ) => {
     let input;
 
     return (
@@ -14,7 +14,8 @@ const AddTodoBar = ( {itemIndex, onAddTodo} ) => {
                         if(!input.value.trim()){
                             return;
                         }
-                        onAddTodo(itemIndex,input.value)
+						var tableName = 'todoItem';
+                        onAddTodo(tableName,itemIndex,input.value)
                         input.value = '';
                     }}>
                     <input type="text" ref={node =>{ input = node}} className="form-control" placeholder="Todo Item ..." />
@@ -36,8 +37,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddTodo: (itemIndex,text) => {
-            dispatch(addTodoItemRequest(itemIndex,text));
+        onAddTodo: (table,itemIndex,text) => {
+            dispatch(addTodoItemRequest(table,itemIndex,text));
         }
     }
 }

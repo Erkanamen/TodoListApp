@@ -3,7 +3,7 @@ import setFilter from '../actions/TodoAppActions';
 
 const FilterLink = ({children, filter, onClick}) => {
    
-    console.log("filter is " + filter + " children is " + children);
+    //console.log("filter is " + filter + " children is " + children);
 
     if(filter === children) {
         return <span>{children}</span>;

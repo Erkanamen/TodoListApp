@@ -13,11 +13,47 @@ import Intro from './routers/Intro'; //Intro - child for router
 import TodoListApp from './routers/TodoListApp'; //TodoListApp - child for router
 import Questions from './routers/Questions'; //TodoListAppItemCounter - child for router
 
-
-//window indicates the current page of browser
-const preloadedState = window.__PRELOADED_STATE__;
+import { callApi } from '../client/util/apiCaller';
 
 
+function uniqueNumber() {
+    var date = Date.now();
+    
+    // If created at same millisecond as previous
+    if (date <= uniqueNumber.previous) {
+        date = ++uniqueNumber.previous;
+    } else {
+        uniqueNumber.previous = date;
+    }
+    
+    return date;
+};
+
+var uniqueID = uniqueNumber();
+
+const todoListAppInitialState = {
+	todoList : {
+		itemIndex: uniqueID,
+    	todos: []
+	},
+	filterGroup : {
+    	filter: "All"
+	}
+};
+
+//calling API for initializing todoList
+//But this way is not better than http://redux.js.org/docs/recipes/ServerRendering.html
+//Please have a look at the page of the link
+callApi('todos', 'get', {
+        }).then(response => {
+           	todoListAppInitialState.todoList.todos = response;
+        });
+
+
+//the todoListAppInitialState will be used for initial status for this application
+const preloadedState = todoListAppInitialState;
+
+//set initial states to the store
 const store = configureStore(preloadedState);
 
 //This code will render router component at the html compoent with id "root"

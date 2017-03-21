@@ -3,6 +3,7 @@ import * as TodoController from '../controllers/todos.controller';
 const router = new Router();
 
 router.route('/todos').post(TodoController.addTodoItem);
+router.route('/todos').get(TodoController.getCollections);
 router.route('/todos/:id').delete(TodoController.deleteItem);
 router.route('/todos/:id').post(TodoController.toggleItem);
 

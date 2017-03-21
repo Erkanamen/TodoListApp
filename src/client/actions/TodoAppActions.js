@@ -16,10 +16,11 @@ export const addTodoItem  = (text) => ({
 }); 
 
 //This function has made a request to server to add item into DB
-export const addTodoItemRequest = (id, text) => {
+export const addTodoItemRequest = (tableName, id, text) => {
     return (dispatch) => {
         callApi('todos', 'post', {
             todoItem: {
+				table : tableName,
                 id: id+1,
                 text: text,
                 completed: false
@@ -36,11 +37,11 @@ export const toggleTodoStatus = (id) => ({
     id
 });
 
-export const toggleTodoRequest = (id) => {
-    console.log("Toggle Todo Requested on id " + id)
+export const toggleTodoRequest = (mid) => {
+    console.log("Toggle Todo Requested on id " + mid)
     return (dispatch) => {
-        callApi( `todos/${id}`, 'post', {id} )
-        .then(dispatch(toggleTodoStatus(id)))
+        callApi( `todos/${mid}`, 'post', {id:mid} )
+        .then(dispatch(toggleTodoStatus(mid)))
         .catch( err => console.log(err) )
     }
 }
@@ -64,4 +65,4 @@ export const deleteItemRequest = (mid) => {
 export const setFilter = (filter) => ({
     type: 'SET_FILTER', 
     filter
-})
+});
