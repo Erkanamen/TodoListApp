@@ -47,7 +47,10 @@ const todoListAppInitialState = {
 callApi('todos', 'get', {
         }).then(response => {
             //set initial states to the store
-            const store = configureStore({...todoListAppInitialState, todoList : { todos : response }});         
+            const store = configureStore({
+                ...todoListAppInitialState,
+                todoList: {...todoListAppInitialState.todoList, todos : response }
+            });
             renderApp(store);
         });
 
