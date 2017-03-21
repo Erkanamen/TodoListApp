@@ -20,7 +20,7 @@ const Questions = ({params}) => {
     return (
         <div>
             <h1> How many questions are there? </h1>
-            <h2> The number of questions = {params.id} </h2>
+            <h2> The number of questions = {params.id || '0'} </h2>
             <br />
     			<PostLinks />
         </div>

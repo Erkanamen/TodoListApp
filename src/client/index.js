@@ -68,7 +68,7 @@ render(
 		      <IndexRoute component={Intro}/>
 		      <Route path="intro" component={Intro}/>
 		      <Route path="todolist" component={TodoListApp}/>
-		      <Route path="questions/:id" component={Questions}/>
+		      <Route path="questions(/:id)" component={Questions}/>
 		    </Route>
         </Router>
     </Provider>, 
